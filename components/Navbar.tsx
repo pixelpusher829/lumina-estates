@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Building2, Heart, Menu, X, Phone } from 'lucide-react';
 import { APP_NAME } from '../constants';
+import Logo from './Logo';
 
 interface NavbarProps {
   favoritesCount: number;
@@ -43,9 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ favoritesCount }) => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-primary-700 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:bg-primary-600 transition-colors">
-            <Building2 size={24} />
-          </div>
+            <Logo />
           <span className={`text-xl font-bold tracking-tight ${isScrolled || location.pathname !== '/' ? 'text-slate-900' : 'text-slate-900 lg:text-white'}`}>
             {APP_NAME}
           </span>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Building2, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { APP_NAME } from '../constants';
+import Logo from './Logo';
 
 const Footer: React.FC = () => {
   return (
@@ -14,9 +15,7 @@ const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-3 text-white">
-              <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-900/20">
-                <Building2 size={24} />
-              </div>
+                <Logo />
               <span className="text-2xl font-bold tracking-tight">{APP_NAME}</span>
             </div>
             <p className="text-slate-400 leading-relaxed text-sm">

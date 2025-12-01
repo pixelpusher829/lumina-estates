@@ -1,8 +1,26 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero: React.FC = () => {
+  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (query.trim()) {
+      navigate(`/featured?q=${encodeURIComponent(query)}`);
+    } else {
+      navigate('/featured');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       {/* Background Image */}
@@ -12,14 +30,14 @@ const Hero: React.FC = () => {
           alt="Modern Architecture" 
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 to-slate-900/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/10"></div>
       </div>
 
       <div className="container relative z-10 mx-auto px-6">
         <div className="max-w-3xl">
           <h1 className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6">
             Find Your Perfect <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-emerald-400">Property Match</span>
+            <span className="text-logo">Property Match</span>
           </h1>
           <p className="text-lg text-slate-100 mb-10 max-w-xl shadow-sm">
             We offer a curated list of modern properties. Whether you are buying or renting, find a space that truly feels like home.
@@ -31,13 +49,19 @@ const Hero: React.FC = () => {
                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                 <input 
                   type="text" 
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="City, Neighborhood, or Address" 
                   className="w-full pl-12 pr-4 py-3 bg-slate-50 rounded-xl outline-none text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-primary-100 transition-all"
                 />
              </div>
              
              <div className="w-full md:w-auto">
-               <button className="w-full md:w-auto bg-primary-700 hover:bg-primary-800 text-white px-8 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2">
+               <button 
+                onClick={handleSearch}
+                className="w-full md:w-auto bg-primary-700 hover:bg-primary-800 text-white px-8 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
+               >
                  <Search size={20} />
                  Search
                </button>
