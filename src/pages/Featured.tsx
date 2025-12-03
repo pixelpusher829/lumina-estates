@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropertyCard from "../components/PropertyCard";
-import { Property } from "../types";
+import { Property } from "../types/types";
 import { propertyService } from "../services/propertyService";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
@@ -69,7 +69,7 @@ const Featured: React.FC<FeaturedProps> = ({ favorites, toggleFavorite }) => {
 			prop.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
 			prop.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
 			prop.tags.some((tag) =>
-				tag.toLowerCase().includes(searchTerm.toLowerCase())
+				tag.toLowerCase().includes(searchTerm.toLowerCase()),
 			);
 
 		const matchesType = filterType === "All" || prop.type === filterType;
@@ -115,7 +115,7 @@ const Featured: React.FC<FeaturedProps> = ({ favorites, toggleFavorite }) => {
 									onClick={() => {
 										setSearchTerm("");
 										const newParams = new URLSearchParams(
-											searchParams
+											searchParams,
 										);
 										newParams.delete("q");
 										setSearchParams(newParams);

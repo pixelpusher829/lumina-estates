@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import PropertyCard from "../components/PropertyCard";
-import { Property } from "../types";
+import { Property } from "../types/types";
 import { propertyService } from "../services/propertyService";
 import {
 	ShieldCheck,
@@ -13,7 +13,7 @@ import {
 	Star,
 	Quote,
 } from "lucide-react";
-import { NEIGHBORHOODS, TESTIMONIALS } from "../constants";
+import { NEIGHBORHOODS, TESTIMONIALS } from "../data/constants";
 
 interface HomeProps {
 	favorites: string[];

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Building2, Heart, Menu, X, Phone } from 'lucide-react';
-import { APP_NAME } from '../constants';
+import { APP_NAME } from '../data/constants';
 import Logo from './Logo';
 
 interface NavbarProps {

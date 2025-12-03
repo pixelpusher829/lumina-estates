@@ -1,7 +1,7 @@
 import React from 'react';
 import { Building2, Facebook, Twitter, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { APP_NAME } from '../constants';
+import { APP_NAME } from '../data/constants';
 import Logo from './Logo';
 
 const Footer: React.FC = () => {
