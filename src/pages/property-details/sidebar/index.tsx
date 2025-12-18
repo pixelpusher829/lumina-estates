@@ -10,7 +10,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ property }) => {
 	return (
 		<div className="lg:col-span-4 relative">
-			<div className="sticky top-28 space-y-6">
+			<div className="space-y-6">
 				<PricingCard property={property} />
 				<AgentCard property={property} />
 			</div>

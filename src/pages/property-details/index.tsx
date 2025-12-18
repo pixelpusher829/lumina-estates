@@ -5,8 +5,8 @@ import { Property } from "@/shared/types/types";
 
 import NavHeader from "./NavHeader";
 import Gallery from "./Gallery";
-import InfoSection from "./InfoSection";
-import Sidebar from "./Sidebar";
+import InfoSection from "./info-section";
+import Sidebar from "./sidebar";
 
 interface PropertyDetailsProps {
 	favorites: string[];
@@ -59,7 +59,7 @@ const PropertyDetails: React.FC<PropertyDetailsProps> = ({
 
 				<Gallery property={property} />
 
-				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-12">
 					<InfoSection property={property} />
 					<Sidebar property={property} />
 				</div>
