@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { propertyService } from "@/shared/services/propertyService";
 import { Property } from "@/shared/types/types";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import Header from "./Header";
 import Filters from "./Filters";

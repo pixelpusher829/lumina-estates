@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { propertyService } from "@/shared/services/propertyService"; // Adjusted path
 import { Agent } from "@/shared/types/types"; // Adjusted path
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const AgentsSection: React.FC = () => {
 	const [agents, setAgents] = useState<Agent[]>([]);

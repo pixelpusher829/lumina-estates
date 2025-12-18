@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import PropertyCard from "@/shared/layout/PropertyCard"; // Adjusted path
 import { Property } from "@/shared/types/types"; // Adjusted path
 import { propertyService } from "@/shared/services/propertyService"; // Adjusted path

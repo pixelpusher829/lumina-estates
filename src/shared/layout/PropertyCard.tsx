@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Heart, MapPin, Bed, Bath, Move, ArrowUpRight } from "lucide-react";
 import { Property } from "@/shared/types";
 

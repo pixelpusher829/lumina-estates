@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { propertyService } from "@/shared/services/propertyService"; // Adjusted path
 import { Agent } from "@/shared/types/types"; // Adjusted path
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const AgentGrid: React.FC = () => {
 	const [agents, setAgents] = useState<Agent[]>([]);
@@ -36,8 +36,7 @@ const AgentGrid: React.FC = () => {
 					{[1, 2, 3].map((i) => (
 						<div
 							key={i}
-							className="h-96 bg-slate-200 rounded-3xl animate-pulse"
-						></div>
+							className="h-96 bg-slate-200 rounded-3xl animate-pulse"></div>
 					))}
 				</div>
 			) : (
@@ -45,8 +44,7 @@ const AgentGrid: React.FC = () => {
 					{agents.map((agent, idx) => (
 						<div
 							key={idx}
-							className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group"
-						>
+							className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 group">
 							<div className="aspect-square overflow-hidden relative">
 								<img
 									src={agent.image}
@@ -56,8 +54,7 @@ const AgentGrid: React.FC = () => {
 								<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
 									<Link
 										to="/contact"
-										className="w-full py-3 bg-white text-slate-900 font-bold rounded-xl text-center hover:bg-slate-100 transition-colors"
-									>
+										className="w-full py-3 bg-white text-slate-900 font-bold rounded-xl text-center hover:bg-slate-100 transition-colors">
 										Contact {agent.name.split(" ")[0]}
 									</Link>
 								</div>
@@ -72,31 +69,16 @@ const AgentGrid: React.FC = () => {
 
 								<div className="space-y-3">
 									<div className="flex items-center gap-3 text-slate-600">
-										<Phone
-											size={18}
-											className="text-primary-600"
-										/>
-										<span className="text-sm">
-											{agent.phone}
-										</span>
+										<Phone size={18} className="text-primary-600" />
+										<span className="text-sm">{agent.phone}</span>
 									</div>
 									<div className="flex items-center gap-3 text-slate-600">
-										<Mail
-											size={18}
-											className="text-primary-600"
-										/>
-										<span className="text-sm">
-											agent@luminaestates.com
-										</span>
+										<Mail size={18} className="text-primary-600" />
+										<span className="text-sm">agent@luminaestates.com</span>
 									</div>
 									<div className="flex items-center gap-3 text-slate-600">
-										<MapPin
-											size={18}
-											className="text-primary-600"
-										/>
-										<span className="text-sm">
-											Metropolis, NY
-										</span>
+										<MapPin size={18} className="text-primary-600" />
+										<span className="text-sm">Metropolis, NY</span>
 									</div>
 								</div>
 							</div>

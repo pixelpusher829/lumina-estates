@@ -7,7 +7,7 @@ import {
 	Linkedin,
 	ArrowRight,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { APP_NAME } from "@/shared/data/constants";
 import Logo from "./Logo";
 

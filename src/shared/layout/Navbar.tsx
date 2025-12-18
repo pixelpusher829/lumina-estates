@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router";
 import { Building2, Heart, Menu, X, Phone } from "lucide-react";
 import { APP_NAME } from "@/shared/data/constants";
 import Logo from "./Logo";
