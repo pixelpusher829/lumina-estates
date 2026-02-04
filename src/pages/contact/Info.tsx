@@ -3,7 +3,7 @@ import type React from "react";
 
 const ContactInfo: React.FC = () => {
 	return (
-		<div className="space-y-6">
+		<div className="space-y-8">
 			<div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
 				<h3 className="text-xl font-bold text-slate-900 mb-6">
 					Contact Information
@@ -11,11 +11,11 @@ const ContactInfo: React.FC = () => {
 
 				<div className="space-y-6">
 					<div className="flex items-start gap-4">
-						<div className="p-3 bg-emerald-50 text-emerald-400 rounded-xl">
+						<div className="p-4 bg-emerald-50 text-emerald-400 rounded-xl">
 							<Phone size={20} />
 						</div>
 						<div>
-							<p className="text-sm text-slate-400 font-medium mb-1">Phone</p>
+
 							<p className="text-slate-700 font-semibold text-lg">
 								+1 (800) 123-4567
 							</p>
@@ -24,11 +24,10 @@ const ContactInfo: React.FC = () => {
 					</div>
 
 					<div className="flex items-start gap-4">
-						<div className="p-3 bg-emerald-50 text-emerald-400 rounded-xl">
+						<div className="p-4 bg-emerald-50 text-emerald-400 rounded-xl">
 							<Mail size={20} />
 						</div>
 						<div>
-							<p className="text-sm text-slate-400 font-medium mb-1">Email</p>
 							<p className="text-slate-700 font-semibold text-lg">
 								hello@luminaestates.com
 							</p>
@@ -37,11 +36,10 @@ const ContactInfo: React.FC = () => {
 					</div>
 
 					<div className="flex items-start gap-4">
-						<div className="p-3 bg-emerald-50 text-emerald-400 rounded-xl">
+						<div className="p-4 bg-emerald-50 text-emerald-400 rounded-xl">
 							<MapPin size={20} />
 						</div>
 						<div>
-							<p className="text-sm text-slate-400 font-medium mb-1">Office</p>
 							<p className="text-slate-700 font-semibold text-lg">
 								123 Innovation Dr.
 							</p>
