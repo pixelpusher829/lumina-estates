@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
 						</div>
 					</div>
 
-					<div className="mt-8 flex items-center gap-8 text-white/90 text-sm">
+					<div className="mt-8 flex flex-wrap items-center gap-6 md:gap-8 text-white/90 text-sm">
 						<div className="flex items-center gap-2">
 							<span className="text-2xl font-bold text-white">1200+</span>
 							<span className="leading-tight">

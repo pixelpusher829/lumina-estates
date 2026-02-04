@@ -7,8 +7,8 @@ const Testimonials: React.FC = () => {
 	return (
 		<section className="py-24 bg-slate-50">
 			<div className="container mx-auto px-6">
-				<div className="flex flex-col md:flex-row items-center justify-between gap-12">
-					<div className="md:w-1/3">
+				<div className="grid gap-12 xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] items-start">
+					<div className="max-w-xl lg:max-w-none">
 						<h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
 							Loved by people <br /> just like you.
 						</h2>
@@ -28,7 +28,7 @@ const Testimonials: React.FC = () => {
 						</Link>
 					</div>
 
-					<div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 						{TESTIMONIALS.map((t) => (
 							<div
 								key={t.name}

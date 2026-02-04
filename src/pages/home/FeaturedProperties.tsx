@@ -37,19 +37,19 @@ const FeaturedProperties: React.FC<FeaturedPropertiesSectionProps> = ({ favorite
 	return (
 		<section className="py-24 bg-slate-50">
 			<div className="container mx-auto px-6">
-				<div className="flex justify-between items-end mb-12">
+				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12">
 					<div>
 						<h2 className="text-3xl font-bold text-slate-900 mb-4">
 							Discover Your Perfect Home
 						</h2>
-						<p className="text-slate-500 text-lg max-w-lg">
+						<p className="text-slate-500 text-lg max-w-full">
 							Browse our handpicked selection of exclusive properties available
 							for sale and rent.
 						</p>
 					</div>
 					<Link
 						to="/featured"
-						className="hidden md:block px-6 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 hover:text-primary-600 transition-colors"
+						className="hidden md:block px-6 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 hover:text-primary-600 transition-colors md:whitespace-nowrap"
 					>
 						View All Properties
 					</Link>

@@ -33,8 +33,8 @@ const PropertyManagement: React.FC = () => {
 					</div>
 
 					{/* Asymmetrical Image Cluster */}
-					<div className="lg:w-1/2 relative">
-						<div className="relative z-10 w-5/6">
+					<div className="lg:w-1/2 w-full relative">
+						<div className="relative z-10 w-6/7">
 							<img
 								src={propertyImg}
 								alt="Luxury Home Exterior"
@@ -42,7 +42,7 @@ const PropertyManagement: React.FC = () => {
 							/>
 						</div>
 						{/* Floating Overlay Image */}
-						<div className="absolute -bottom-8 right-0 w-2/5 z-20">
+						<div className="absolute -bottom-8 right-0 w-2/6 z-20">
 							<img
 								src={tenantImg}
 								alt="Happy Tenant"

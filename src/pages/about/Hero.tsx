@@ -4,7 +4,7 @@ const Hero: React.FC = () => {
 	return (
 		<div className="container mx-auto px-6 mb-20">
 			<div className="max-w-4xl mx-auto text-center">
-				<h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+				<h1 className="text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
 					Redefining luxury real estate for the modern era.
 				</h1>
 				<p className="text-xl text-slate-500 leading-relaxed">

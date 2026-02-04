@@ -34,7 +34,7 @@ const Investment: React.FC = () => {
 
 					{/* Asymmetrical Image Cluster */}
 					<div className="lg:w-1/2 relative">
-						<div className="relative z-10 w-4/5 mr-auto">
+						<div className="relative z-10 w-4/5 ml-auto lg:ml-0 lg:mr-auto lg:w-11/12">
 							<img
 								src={investmentImg}
 								alt="Skyscraper"
@@ -42,7 +42,7 @@ const Investment: React.FC = () => {
 							/>
 						</div>
 						{/* Floating Glass Card */}
-						<div className="absolute top-1/2 -right-4 lg:-right-8 -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 max-w-xs">
+						<div className="absolute top-1/2 left-4 right-auto -translate-y-1/2 z-20 bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/50 max-w-xs lg:left-auto lg:-right-8">
 							<div className="flex items-center gap-3 mb-2">
 								<div className="w-3 h-3 rounded-full bg-emerald-500"></div>
 								<span className="text-sm font-semibold text-slate-800">

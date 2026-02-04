@@ -1,6 +1,7 @@
 import type React from "react";
 import { Link } from "react-router";
 
+
 const Cta: React.FC = () => {
 	return (
 		<section className="py-20 relative overflow-hidden bg-[url(/images/cta/cta-home.webp)] bg-cover bg-position-[50%_70%]">
