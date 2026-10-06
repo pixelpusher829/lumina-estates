@@ -22,8 +22,10 @@ const Investment: React.FC = () => {
 							high-growth corridors and turnkey rental opportunities before they
 							hit the mass market.
 						</p>
-						<button className="text-primary-700 font-bold hover:text-primary-800 inline-flex items-center gap-2 group"
-						type="button">
+						<button
+							className="text-primary-700 font-bold hover:text-primary-800 inline-flex items-center gap-2 group"
+							type="button"
+						>
 							View Market Reports{" "}
 							<ArrowRight
 								size={20}

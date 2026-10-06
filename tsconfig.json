@@ -1,21 +1,25 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"experimentalDecorators": true,
-		"useDefineForClassFields": false,
 		"module": "ESNext",
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
 		"skipLibCheck": true,
-		"types": ["node"],
+		"types": ["node", "vite/client"],
 		"moduleResolution": "bundler",
 		"isolatedModules": true,
 		"moduleDetection": "force",
 		"allowJs": true,
 		"jsx": "react-jsx",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@convex/*": ["./convex/*"]
 		},
 		"allowImportingTsExtensions": true,
 		"noEmit": true
-	}
+	},
+	"include": ["src", "convex", "vite.config.ts"],
+	"exclude": ["convex/_generated/*.js"]
 }

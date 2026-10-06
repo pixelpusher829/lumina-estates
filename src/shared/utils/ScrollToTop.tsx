@@ -6,7 +6,7 @@ const ScrollToTop = () => {
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: scroll on route change
 	useEffect(() => {
-		window.scrollTo(0, 0);
+		window.scrollTo({ top: 0, behavior: "instant" });
 	}, [pathname]);
 
 	return null;

@@ -1,32 +1,21 @@
-export interface Agent {
-	name: string;
-	image: string;
-	phone: string;
-}
+import type { api } from "@convex/_generated/api";
+import type { Doc } from "@convex/_generated/dataModel";
+import type { FunctionReturnType } from "convex/server";
 
-export interface Property {
-	id: string;
-	title: string;
-	description: string;
-	price: number;
-	currency: string;
-	address: string;
-	city: string;
-	specs: {
-		beds: number;
-		baths: number;
-		sqft: number;
-	};
-	type: "Apartment" | "Villa" | "Penthouse" | "Studio";
-	tags: string[];
-	images: string[];
-	agent: string;
-	isNew?: boolean;
-}
+/** A published listing with resolved photo URLs, as returned to the public site. */
+export type Listing = FunctionReturnType<typeof api.listings.list>[number];
 
-export interface FilterState {
-	search: string;
-	minPrice: number;
-	maxPrice: number;
-	type: string;
-}
+export type AdminListing = FunctionReturnType<
+	typeof api.listings.adminList
+>[number];
+
+export type Enquiry = Doc<"enquiries">;
+
+export type {
+	EnquiryKind,
+	EnquiryStatus,
+	ListingStatus,
+	ListingType,
+} from "@convex/shared";
+
+export type ListingImage = Listing["photos"][number]["ref"];

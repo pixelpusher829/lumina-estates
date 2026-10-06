@@ -1,8 +1,11 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { useSearchParams } from "react-router";
 
 const FaqList: React.FC = () => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const query = (searchParams.get("q") ?? "").trim().toLowerCase();
 	const [openIndex, setOpenIndex] = useState<number | null>(0);
 
 	const faqs = [
@@ -38,13 +41,41 @@ const FaqList: React.FC = () => {
 		},
 	];
 
+	const terms = query.split(/\s+/).filter(Boolean);
+	const visible = faqs.filter((faq) =>
+		terms.every((term) =>
+			`${faq.question} ${faq.answer}`.toLowerCase().includes(term),
+		),
+	);
+
 	const toggleFAQ = (index: number) => {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
 	return (
 		<div className="space-y-4">
-			{faqs.map((faq, index) => (
+			{query && (
+				<div className="flex items-center justify-between text-sm text-slate-500">
+					<span>
+						{visible.length} result{visible.length === 1 ? "" : "s"} for “
+						{searchParams.get("q")}”
+					</span>
+					<button
+						type="button"
+						className="font-semibold text-primary-600 hover:underline"
+						onClick={() => setSearchParams({}, { replace: true })}
+					>
+						Show all
+					</button>
+				</div>
+			)}
+			{visible.length === 0 && (
+				<p className="text-center text-slate-500 py-10">
+					No answers matched your search. Try different words, or contact us
+					below.
+				</p>
+			)}
+			{visible.map((faq, index) => (
 				<div
 					key={faq.question}
 					className={`bg-white rounded-2xl border transition-all duration-300 ${

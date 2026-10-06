@@ -1,38 +1,76 @@
-import type React from "react";
-import type { Property } from "@/shared/types/types";
+import { CalendarCheck, MessageSquare } from "lucide-react";
+import type { Listing } from "@/shared/types/types";
+import { formatPrice } from "@/shared/utils/format";
 
 interface PricingCardProps {
-	property: Property;
+	property: Listing;
+	onRequestTour: () => void;
+	onContactAgent: () => void;
 }
 
-const PricingCard: React.FC<PricingCardProps> = ({ property }) => {
+const PricingCard = ({
+	property,
+	onRequestTour,
+	onContactAgent,
+}: PricingCardProps) => {
+	const sold = property.status === "sold";
+	const rent = property.status === "for_rent";
+	const pricePerSqft =
+		!rent && property.sqft > 0
+			? Math.round(property.price / property.sqft)
+			: null;
+
 	return (
 		<div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xl shadow-slate-200/40">
 			<div className="mb-6">
+				<p className="text-sm text-slate-500 mb-1">
+					{sold ? "Sold for" : rent ? "Monthly rent" : "Asking price"}
+				</p>
 				<span className="text-3xl font-bold text-slate-900">
-					{property.currency}
-					{property.price.toLocaleString()}
+					{formatPrice(property.price, property.status)}
 				</span>
-				<span className="text-slate-500 ml-2">/ total price</span>
+				{pricePerSqft && (
+					<p className="text-sm text-slate-500 mt-1">
+						{formatPrice(pricePerSqft)} / sqft
+					</p>
+				)}
 			</div>
 
-			<div className="space-y-3">
-				<button
-					className="w-full py-3.5 bg-primary-600 text-white font-bold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20"
-					type="button"
-				>
-					Request a Tour
-				</button>
-				<button
-					className="w-full py-3.5 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 transition-colors"
-					type="button"
-				>
-					Contact Agent
-				</button>
-			</div>
+			{sold ? (
+				<div className="space-y-3">
+					<p className="text-sm text-slate-600 bg-slate-50 rounded-xl p-4">
+						This property has been sold. Interested in something similar? Our
+						agents can help.
+					</p>
+					<button
+						className="btn-secondary w-full"
+						type="button"
+						onClick={onContactAgent}
+					>
+						<MessageSquare size={18} /> Contact Agent
+					</button>
+				</div>
+			) : (
+				<div className="space-y-3">
+					<button
+						className="btn-primary w-full py-3.5"
+						type="button"
+						onClick={onRequestTour}
+					>
+						<CalendarCheck size={18} /> Request a Tour
+					</button>
+					<button
+						className="btn-secondary w-full py-3.5"
+						type="button"
+						onClick={onContactAgent}
+					>
+						<MessageSquare size={18} /> Contact Agent
+					</button>
+				</div>
+			)}
 
 			<p className="text-xs text-slate-400 text-center mt-4">
-				You won't be charged yet.
+				Free, no-obligation enquiry. We usually reply within a day.
 			</p>
 		</div>
 	);

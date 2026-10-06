@@ -1,27 +1,38 @@
 {
 	"name": "lumina-estates",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "bun --bun vite",
-		"build": "bun --bun vite build",
-		"preview": "bun --bun vite preview"
+		"dev": "concurrently -k -n convex,vite -c magenta,cyan \"convex dev\" \"vite\"",
+		"dev:web": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"typecheck": "tsc",
+		"lint": "biome check .",
+		"format": "biome check --write .",
+		"seed": "convex run seed:run"
 	},
 	"dependencies": {
+		"@auth/core": "0.37.0",
+		"@convex-dev/auth": "^0.0.96",
 		"@tailwindcss/vite": "^4.1.18",
-		"@types/react": "^19.2.10",
-		"js-yaml": "^4.1.1",
+		"convex": "^1.46.0",
 		"lucide-react": "^0.563.0",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"react-icons": "^5.5.0",
 		"react-router": "^7.13.0",
+		"sonner": "^2.0.8",
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.5.15",
 		"@types/node": "^25.2.0",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
 		"@vitejs/plugin-react": "^5.1.3",
+		"concurrently": "^10.0.5",
 		"typescript": "~5.9.3",
 		"vite": "^7.3.1"
 	}

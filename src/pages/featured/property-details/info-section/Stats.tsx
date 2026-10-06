@@ -1,39 +1,32 @@
-import { Bath, Bed, Move } from "lucide-react";
-import type React from "react";
-import type { Property } from "@/shared/types/types";
+import { Bath, Bed, Home, Move } from "lucide-react";
+import type { Listing } from "@/shared/types/types";
+import { formatNumber } from "@/shared/utils/format";
 
 interface PropertyStatsProps {
-	property: Property;
+	property: Listing;
 }
 
-const PropertyStats: React.FC<PropertyStatsProps> = ({ property }) => {
+const PropertyStats = ({ property }: PropertyStatsProps) => {
+	const stats = [
+		{ icon: Bed, value: property.beds, label: "Bedrooms" },
+		{ icon: Bath, value: property.baths, label: "Bathrooms" },
+		{ icon: Move, value: formatNumber(property.sqft), label: "Square ft" },
+		{ icon: Home, value: property.type, label: "Property type" },
+	];
+
 	return (
-		<div className="grid grid-cols-3 gap-4">
-			<div className="flex flex-col gap-1">
-				<span className="flex items-center gap-2 text-slate-900 font-bold text-xl">
-					<Bed size={20} className="text-slate-400" /> {property.specs.beds}
-				</span>
-				<span className="text-xs text-slate-500 uppercase tracking-wide">
-					Bedrooms
-				</span>
-			</div>
-			<div className="flex flex-col gap-1">
-				<span className="flex items-center gap-2 text-slate-900 font-bold text-xl">
-					<Bath size={20} className="text-slate-400" /> {property.specs.baths}
-				</span>
-				<span className="text-xs text-slate-500 uppercase tracking-wide">
-					Bathrooms
-				</span>
-			</div>
-			<div className="flex flex-col gap-1">
-				<span className="flex items-center gap-2 text-slate-900 font-bold text-xl">
-					<Move size={20} className="text-slate-400" /> {property.specs.sqft}
-				</span>
-				<span className="text-xs text-slate-500 uppercase tracking-wide">
-					Square Ft
-				</span>
-			</div>
-		</div>
+		<dl className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+			{stats.map(({ icon: Icon, value, label }) => (
+				<div key={label} className="flex flex-col-reverse gap-1">
+					<dt className="text-xs text-slate-500 uppercase tracking-wide">
+						{label}
+					</dt>
+					<dd className="flex items-center gap-2 text-slate-900 font-bold text-xl">
+						<Icon size={20} className="text-slate-400" /> {value}
+					</dd>
+				</div>
+			))}
+		</dl>
 	);
 };
 

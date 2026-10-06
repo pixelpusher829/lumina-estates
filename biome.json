@@ -6,7 +6,7 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist"]
+		"includes": ["**", "!!**/dist", "!!convex/_generated"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -23,7 +23,7 @@
 			"quoteStyle": "double"
 		}
 	},
-	"css":	{
+	"css": {
 		"parser": {
 			"tailwindDirectives": true
 		}

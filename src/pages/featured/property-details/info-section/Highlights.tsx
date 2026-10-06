@@ -1,21 +1,18 @@
-import type React from "react";
-import type { Property } from "@/shared/types/types";
+import type { Listing } from "@/shared/types/types";
 
 interface PropertyHighlightsProps {
-	property: Property;
+	property: Listing;
 }
 
-const PropertyHighlights: React.FC<PropertyHighlightsProps> = ({
-	property,
-}) => {
+const PropertyHighlights = ({ property }: PropertyHighlightsProps) => {
+	if (property.highlights.length === 0) return null;
 	return (
 		<div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-			<h4 className="font-bold text-slate-900 mb-2">Property Highlights</h4>
-			<ul className="list-disc list-inside text-slate-600 space-y-1">
-				<li>Premium location in {property.city}</li>
-				<li>Recently inspected and verified</li>
-				<li>High-speed internet ready</li>
-				<li>Flexible lease terms available</li>
+			<h3 className="font-bold text-slate-900 mb-3">Property Highlights</h3>
+			<ul className="list-disc list-inside text-slate-600 space-y-1.5">
+				{property.highlights.map((highlight) => (
+					<li key={highlight}>{highlight}</li>
+				))}
 			</ul>
 		</div>
 	);

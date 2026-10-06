@@ -1,99 +1,97 @@
-import type React from "react";
-import { useEffect, useState } from "react";
+import { api } from "@convex/_generated/api";
+import { useQuery } from "convex/react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router";
-import { propertyService } from "@/shared/services/propertyService";
-import type { Property } from "@/shared/types/types";
+import Seo from "@/shared/components/Seo";
+import { useDebouncedValue } from "@/shared/hooks/useDebouncedValue";
 import Filters from "./Filters";
+import { applyFilters, parseFilters } from "./filterUtils";
 import Header from "./Header";
 import PropertyList from "./PropertyList";
 
-interface FeaturedProps {
-	favorites: string[];
-	toggleFavorite: (id: string) => void;
-}
+const PAGE_SIZE = 12;
 
-const Featured: React.FC<FeaturedProps> = ({ favorites, toggleFavorite }) => {
-	const [properties, setProperties] = useState<Property[]>([]);
-	const [loading, setLoading] = useState(true);
+const Featured = () => {
+	const listings = useQuery(api.listings.list);
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
-	const [filterType, setFilterType] = useState("All");
+	const filters = useMemo(() => parseFilters(searchParams), [searchParams]);
 
-	useEffect(() => {
-		const loadProperties = async () => {
-			try {
-				const data = await propertyService.getAllProperties();
-				setProperties(data);
-			} catch (error) {
-				console.error("Failed to load properties", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		loadProperties();
-	}, []);
+	const updateParams = useCallback(
+		(updates: Record<string, string | number | null>) => {
+			setSearchParams(
+				(prev) => {
+					const next = new URLSearchParams(prev);
+					for (const [key, value] of Object.entries(updates)) {
+						if (value === null || value === "" || value === "All") {
+							next.delete(key);
+						} else {
+							next.set(key, String(value));
+						}
+					}
+					return next;
+				},
+				{ replace: true },
+			);
+		},
+		[setSearchParams],
+	);
 
-	// Sync state with URL params if they change (e.g. back button or nav click)
-	useEffect(() => {
-		const query = searchParams.get("q");
-		setSearchTerm(query || "");
-	}, [searchParams]);
+	// Search is typed into local state and pushed to the URL once typing pauses.
+	const [searchInput, setSearchInput] = useState(filters.q);
+	const debouncedSearch = useDebouncedValue(searchInput, 300);
+	const debouncedRef = useRef(debouncedSearch);
+	debouncedRef.current = debouncedSearch;
 
-	// Update URL param when searchTerm changes
+	// Only react to typing; depending on filters.q would echo URL changes back.
+	// biome-ignore lint/correctness/useExhaustiveDependencies: see above
 	useEffect(() => {
-		const newParams = new URLSearchParams(searchParams);
-		if (searchTerm) {
-			newParams.set("q", searchTerm);
-		} else {
-			newParams.delete("q");
+		if (debouncedSearch.trim() !== filters.q) {
+			updateParams({ q: debouncedSearch.trim() });
 		}
-		setSearchParams(newParams);
-	}, [searchTerm, setSearchParams, searchParams]);
+	}, [debouncedSearch]);
 
-	const handleFavoriteClick = (id: string) => {
-		toggleFavorite(id);
-	};
+	// Pick up search changes that come from outside (e.g. the home hero search).
+	useEffect(() => {
+		if (filters.q !== debouncedRef.current.trim()) setSearchInput(filters.q);
+	}, [filters.q]);
 
 	const clearFilters = () => {
-		setSearchTerm("");
-		setFilterType("All");
-		setSearchParams({}); // Clear URL params
+		setSearchInput("");
+		setSearchParams({}, { replace: true });
 	};
 
-	const filteredProperties = properties.filter((prop) => {
-		const matchesSearch =
-			prop.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			prop.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			prop.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			prop.tags.some((tag) =>
-				tag.toLowerCase().includes(searchTerm.toLowerCase()),
-			);
+	const filtered = useMemo(
+		() => (listings ? applyFilters(listings, filters) : []),
+		[listings, filters],
+	);
 
-		const matchesType = filterType === "All" || prop.type === filterType;
-
-		return matchesSearch && matchesType;
-	});
-
-	const propertyTypes = ["All", "Apartment", "Villa", "Penthouse", "Studio"];
+	// Reset pagination whenever the filters change.
+	const [visible, setVisible] = useState(PAGE_SIZE);
+	const filterKey = searchParams.toString();
+	// biome-ignore lint/correctness/useExhaustiveDependencies: reset when filters change
+	useEffect(() => setVisible(PAGE_SIZE), [filterKey]);
 
 	return (
 		<div className="min-h-screen pt-28 pb-20 bg-slate-50">
+			<Seo
+				title="Properties"
+				description="Browse homes, apartments and villas for sale and rent."
+			/>
 			<div className="container mx-auto px-6">
 				<Header />
 				<Filters
-					searchTerm={searchTerm}
-					setSearchTerm={setSearchTerm}
-					filterType={filterType}
-					setFilterType={setFilterType}
-					clearFilters={clearFilters}
-					propertyTypes={propertyTypes}
+					filters={filters}
+					searchInput={searchInput}
+					onSearchChange={setSearchInput}
+					onChange={updateParams}
+					onClear={clearFilters}
 				/>
 				<PropertyList
-					filteredProperties={filteredProperties}
-					loading={loading}
-					favorites={favorites}
-					onToggleFavorite={handleFavoriteClick}
+					listings={filtered.slice(0, visible)}
+					total={filtered.length}
+					loading={listings === undefined}
 					onClearFilters={clearFilters}
+					onLoadMore={() => setVisible((v) => v + PAGE_SIZE)}
 				/>
 			</div>
 		</div>

@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
 					</p>
 
 					{/* Search Box */}
-					<div className="bg-white p-3 rounded-2xl shadow-2xl max-w-2xl flex flex-col md:flex-row items-center gap-3 animate-fade-in-up">
+					<div className="bg-white p-3 rounded-2xl shadow-2xl max-w-2xl flex flex-col md:flex-row items-center gap-3">
 						<div className="flex-1 w-full relative">
 							<MapPin
 								className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
@@ -76,19 +76,19 @@ const Hero: React.FC = () => {
 
 					<div className="mt-8 flex flex-wrap items-center gap-6 md:gap-8 text-white/90 text-sm">
 						<div className="flex items-center gap-2">
-							<span className="text-2xl font-bold text-white">1200+</span>
+							<span className="text-2xl font-bold text-white">1,200+</span>
 							<span className="leading-tight">
 								Premium
 								<br />
-								Product
+								Properties
 							</span>
 						</div>
 						<div className="flex items-center gap-2">
-							<span className="text-2xl font-bold text-white">4500+</span>
+							<span className="text-2xl font-bold text-white">4,500+</span>
 							<span className="leading-tight">
 								Happy
 								<br />
-								Customer
+								Clients
 							</span>
 						</div>
 						<div className="flex items-center gap-2">

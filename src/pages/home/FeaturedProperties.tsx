@@ -1,38 +1,12 @@
-import type React from "react";
-import { useEffect, useState } from "react";
+import { api } from "@convex/_generated/api";
+import { useQuery } from "convex/react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router";
+import { PropertyGridSkeleton } from "@/shared/components/PropertyCardSkeleton";
 import PropertyCard from "@/shared/layout/PropertyCard";
-import { propertyService } from "@/shared/services/propertyService";
-import type { Property } from "@/shared/types/types";
 
-interface FeaturedPropertiesSectionProps {
-	favorites: string[];
-	onToggleFavorite: (id: string) => void;
-}
-
-const FeaturedProperties: React.FC<FeaturedPropertiesSectionProps> = ({ favorites, onToggleFavorite }) => {
-	const [properties, setProperties] = useState<Property[]>([]);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		const loadProperties = async () => {
-			try {
-				const data = await propertyService.getAllProperties();
-				// Just show first 3 for homepage
-				setProperties(data.slice(0, 3));
-			} catch (error) {
-				console.error("Failed to load properties", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		loadProperties();
-	}, []);
-
-	const handleFavoriteClick = (e: React.MouseEvent, id: string) => {
-		e.preventDefault();
-		onToggleFavorite(id);
-	};
+const FeaturedProperties = () => {
+	const properties = useQuery(api.listings.featured);
 
 	return (
 		<section className="py-24 bg-slate-50">
@@ -42,47 +16,36 @@ const FeaturedProperties: React.FC<FeaturedPropertiesSectionProps> = ({ favorite
 						<h2 className="text-3xl font-bold text-slate-900 mb-4">
 							Discover Your Perfect Home
 						</h2>
-						<p className="text-slate-500 text-lg max-w-full">
+						<p className="text-slate-500 text-lg">
 							Browse our handpicked selection of exclusive properties available
 							for sale and rent.
 						</p>
 					</div>
 					<Link
 						to="/featured"
-						className="hidden md:block px-6 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 hover:text-primary-600 transition-colors md:whitespace-nowrap"
+						className="hidden md:inline-flex btn-secondary whitespace-nowrap hover:text-primary-600"
 					>
-						View All Properties
+						View All Properties <ArrowRight size={18} />
 					</Link>
 				</div>
 
-				{loading ? (
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-						{[1, 2, 3].map((i) => (
-							<div
-								key={i}
-								className="h-30 bg-slate-200 rounded-3xl animate-pulse"
-							></div>
-						))}
-					</div>
+				{properties === undefined ? (
+					<PropertyGridSkeleton count={3} />
+				) : properties.length === 0 ? (
+					<p className="text-center text-slate-500 py-12">
+						New properties are coming soon. Check back shortly!
+					</p>
 				) : (
-					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-						{properties.map((prop) => (
-							<PropertyCard
-								key={prop.id}
-								property={prop}
-								isFavorite={favorites.includes(prop.id)}
-								onToggleFavorite={(e) => handleFavoriteClick(e, prop.id)}
-							/>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{properties.slice(0, 6).map((prop) => (
+							<PropertyCard key={prop._id} property={prop} />
 						))}
 					</div>
 				)}
 
 				<div className="mt-12 text-center md:hidden">
-					<Link
-						to="/featured"
-						className="w-full px-6 py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-colors inline-block"
-					>
-						View All Properties
+					<Link to="/featured" className="btn-secondary w-full">
+						View All Properties <ArrowRight size={18} />
 					</Link>
 				</div>
 			</div>

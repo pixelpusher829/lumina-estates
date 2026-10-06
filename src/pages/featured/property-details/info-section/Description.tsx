@@ -1,17 +1,14 @@
-import type React from "react";
-import type { Property } from "@/shared/types/types";
+import type { Listing } from "@/shared/types/types";
 
 interface PropertyDescriptionProps {
-	property: Property;
+	property: Listing;
 }
 
-const PropertyDescription: React.FC<PropertyDescriptionProps> = ({
-	property,
-}) => {
+const PropertyDescription = ({ property }: PropertyDescriptionProps) => {
 	return (
 		<div>
 			<h3 className="text-xl font-bold text-slate-900 mb-4">About this home</h3>
-			<p className="text-slate-600 leading-relaxed text-lg">
+			<p className="text-slate-600 leading-relaxed text-lg whitespace-pre-line">
 				{property.description}
 			</p>
 		</div>

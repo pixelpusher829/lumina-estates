@@ -1,25 +1,18 @@
-import type React from "react";
-import Hero from "@/pages/home/Hero"; // Existing component
+import Seo from "@/shared/components/Seo";
 import Cta from "./Cta";
 import FeaturedProperties from "./FeaturedProperties";
+import Hero from "./Hero";
 import Neighbourhoods from "./Neighbourhoods";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
 
-interface HomeProps {
-	favorites: string[];
-	toggleFavorite: (id: string) => void;
-}
-
-const Home: React.FC<HomeProps> = ({ favorites, toggleFavorite }) => {
+const Home = () => {
 	return (
 		<div className="min-h-screen">
+			<Seo description="Discover premium homes, apartments and villas for sale and rent with Lumina Estates." />
 			<Hero />
 			<Services />
-			<FeaturedProperties
-				favorites={favorites}
-				onToggleFavorite={toggleFavorite}
-			/>
+			<FeaturedProperties />
 			<Neighbourhoods />
 			<Testimonials />
 			<Cta />
