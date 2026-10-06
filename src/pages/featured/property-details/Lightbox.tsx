@@ -47,7 +47,7 @@ const Lightbox = ({
 
 	return createPortal(
 		<div
-			className="fixed inset-0 z-100 bg-slate-950/95 flex flex-col animate-fade-in"
+			className="palette-light fixed inset-0 z-100 bg-slate-950/95 flex flex-col animate-fade-in"
 			role="dialog"
 			aria-modal="true"
 			aria-label={`${title} photo gallery`}

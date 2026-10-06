@@ -9,6 +9,20 @@
 		/>
 		<meta name="theme-color" content="#4f46e5" />
 		<title>Lumina Estates</title>
+		<script>
+			// Apply the saved/system theme before first paint to avoid a flash.
+			(() => {
+				let theme = "system";
+				try {
+					theme = localStorage.getItem("lumina_theme") || "system";
+				} catch {}
+				const dark =
+					theme === "dark" ||
+					(theme === "system" &&
+						matchMedia("(prefers-color-scheme: dark)").matches);
+				document.documentElement.classList.toggle("dark", dark);
+			})();
+		</script>
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

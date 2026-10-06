@@ -53,12 +53,12 @@ const AdminLogin = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
+		<main className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
 			<Seo title="Admin sign in" />
 			<div className="w-full max-w-md">
 				<Link
 					to="/"
-					className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-6"
+					className="inline-flex items-center gap-2 py-1 text-sm text-slate-500 hover:text-slate-900 mb-5"
 				>
 					<ArrowLeft size={16} /> Back to site
 				</Link>
@@ -142,7 +142,7 @@ const AdminLogin = () => {
 							: "Already have an account? "}
 						<button
 							type="button"
-							className="font-semibold text-primary-600 hover:underline"
+							className="inline-block py-1 font-semibold text-primary-600 hover:underline"
 							onClick={() => {
 								setFlow(flow === "signIn" ? "signUp" : "signIn");
 								setError(null);
@@ -153,7 +153,7 @@ const AdminLogin = () => {
 					</p>
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 };
 

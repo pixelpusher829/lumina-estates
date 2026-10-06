@@ -29,6 +29,7 @@ import {
 	formatRelative,
 } from "@/shared/utils/format";
 import ConfirmDialog from "../components/ConfirmDialog";
+import CountPill from "../components/CountPill";
 import PageHeader from "../components/PageHeader";
 
 const KIND_META = {
@@ -121,7 +122,7 @@ const EnquiryRow = ({
 							</span>
 						)}
 						{enquiry.status === "archived" && (
-							<span className="text-xs font-semibold text-slate-400">
+							<span className="text-xs font-semibold text-slate-500">
 								Archived
 							</span>
 						)}
@@ -132,7 +133,7 @@ const EnquiryRow = ({
 					</p>
 				</div>
 				<div className="flex items-center gap-2 shrink-0">
-					<span className="text-xs text-slate-400 whitespace-nowrap">
+					<span className="text-xs text-slate-500 whitespace-nowrap">
 						{formatRelative(enquiry._creationTime)}
 					</span>
 					<ChevronDown
@@ -185,7 +186,7 @@ const EnquiryRow = ({
 					<p className="whitespace-pre-line text-slate-700 bg-white border border-slate-200 rounded-xl p-4 mb-4">
 						{enquiry.message}
 					</p>
-					<p className="text-xs text-slate-400 mb-4">
+					<p className="text-xs text-slate-500 mb-4">
 						Received {formatDate(enquiry._creationTime)}
 					</p>
 					<div className="flex flex-wrap gap-2">
@@ -268,13 +269,14 @@ const AdminEnquiries = () => {
 						type="button"
 						onClick={() => setTab(value)}
 						aria-pressed={tab === value}
-						className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors ${
+						className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors ${
 							tab === value
 								? "bg-slate-900 text-white"
 								: "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
 						}`}
 					>
-						{label} <span className="opacity-60">{counts[value] ?? 0}</span>
+						{label}
+						<CountPill count={counts[value] ?? 0} active={tab === value} />
 					</button>
 				))}
 			</div>

@@ -9,7 +9,7 @@ const PropertyAmenities = ({ property }: PropertyAmenitiesProps) => {
 	if (property.tags.length === 0) return null;
 	return (
 		<div>
-			<h3 className="text-xl font-bold text-slate-900 mb-6">Key Amenities</h3>
+			<h2 className="text-xl font-bold text-slate-900 mb-6">Key Amenities</h2>
 			<ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
 				{property.tags.map((tag) => (
 					<li key={tag} className="flex items-center gap-3">

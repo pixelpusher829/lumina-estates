@@ -31,6 +31,7 @@ import {
 	formatRelative,
 } from "@/shared/utils/format";
 import ConfirmDialog from "../components/ConfirmDialog";
+import CountPill from "../components/CountPill";
 import PageHeader from "../components/PageHeader";
 
 const AdminListings = () => {
@@ -109,14 +110,17 @@ const AdminListings = () => {
 							type="button"
 							onClick={() => setStatusFilter(status)}
 							aria-pressed={statusFilter === status}
-							className={`px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors ${
+							className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors ${
 								statusFilter === status
 									? "bg-slate-900 text-white"
 									: "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
 							}`}
 						>
-							{status === "all" ? "All" : STATUS_LABELS[status]}{" "}
-							<span className="opacity-60">{counts[status] ?? 0}</span>
+							{status === "all" ? "All" : STATUS_LABELS[status]}
+							<CountPill
+								count={counts[status] ?? 0}
+								active={statusFilter === status}
+							/>
 						</button>
 					))}
 				</div>
@@ -167,7 +171,7 @@ const AdminListings = () => {
 										<span className="truncate">{listing.title}</span>
 										{!listing.canEdit && (
 											<span
-												className="shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded"
+												className="shrink-0 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded"
 												title="Sample listings are read-only in the demo"
 											>
 												<Lock size={10} /> Sample
@@ -182,7 +186,7 @@ const AdminListings = () => {
 									<p className="text-sm text-slate-500 truncate">
 										{listing.address}, {listing.city}
 									</p>
-									<p className="text-xs text-slate-400 mt-1">
+									<p className="text-xs text-slate-500 mt-1">
 										{formatPrice(listing.price, listing.status)} ·{" "}
 										{getAgent(listing.agent)?.name ?? "No agent"} · updated{" "}
 										{formatRelative(listing.updatedAt)}

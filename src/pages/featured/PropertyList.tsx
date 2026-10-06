@@ -45,6 +45,7 @@ const PropertyList = ({
 
 	return (
 		<div>
+			<h2 className="sr-only">Results</h2>
 			<p className="text-sm text-slate-500 mb-6" aria-live="polite">
 				Showing{" "}
 				<span className="font-semibold text-slate-900">{listings.length}</span>{" "}

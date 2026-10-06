@@ -1,8 +1,7 @@
 import { lazy, Suspense } from "react";
-import { Outlet, Route, Routes } from "react-router";
+import { Navigate, Outlet, Route, Routes } from "react-router";
 import {
 	About,
-	Agents,
 	Contact,
 	FAQ,
 	Favorites,
@@ -53,7 +52,11 @@ const App = () => {
 						<Route path="/services" element={<Services />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/agents" element={<Agents />} />
+						{/* Agents now live on the About page. */}
+						<Route
+							path="/agents"
+							element={<Navigate to="/about#team" replace />}
+						/>
 						<Route path="/legal" element={<Legal />} />
 						<Route path="/help" element={<Help />} />
 						<Route path="/faq" element={<FAQ />} />

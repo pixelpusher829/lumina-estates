@@ -176,7 +176,7 @@ const ImageUploader = ({
 								className="w-full h-full object-cover"
 							/>
 							{index === 0 && (
-								<span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-primary-600 text-white text-[10px] font-bold uppercase tracking-wider">
+								<span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-primary-600 text-snow text-[10px] font-bold uppercase tracking-wider">
 									Cover
 								</span>
 							)}

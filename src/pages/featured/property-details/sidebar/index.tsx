@@ -14,7 +14,7 @@ const Sidebar = ({ property }: SidebarProps) => {
 	const agent = getAgent(property.agent);
 
 	return (
-		<aside className="lg:col-span-4 lg:sticky lg:top-28">
+		<aside className="lg:col-span-4">
 			<div className="space-y-6">
 				<PricingCard
 					property={property}

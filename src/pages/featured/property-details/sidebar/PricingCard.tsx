@@ -69,7 +69,7 @@ const PricingCard = ({
 				</div>
 			)}
 
-			<p className="text-xs text-slate-400 text-center mt-4">
+			<p className="text-xs text-slate-500 text-center mt-4">
 				Free, no-obligation enquiry. We usually reply within a day.
 			</p>
 		</div>

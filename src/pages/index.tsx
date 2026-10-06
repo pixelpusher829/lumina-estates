@@ -1,5 +1,4 @@
 export { default as About } from "./about";
-export { default as Agents } from "./agents";
 export { default as Contact } from "./contact";
 export { default as Favorites } from "./favorites";
 export { default as Featured } from "./featured";

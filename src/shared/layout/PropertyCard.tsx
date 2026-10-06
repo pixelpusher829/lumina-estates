@@ -40,7 +40,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
 		<Link to={`/property/${property.slug}`} className="block group h-full">
 			<article className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
 				{/* Image */}
-				<div className="relative aspect-4/3 overflow-hidden bg-slate-100">
+				<div className="palette-light relative aspect-4/3 overflow-hidden bg-slate-100">
 					{cover ? (
 						<img
 							src={cover}
@@ -60,12 +60,12 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
 					{/* Badges */}
 					<div className="absolute top-4 left-4 flex flex-wrap gap-2">
 						{sold ? (
-							<span className="px-3 py-1 bg-rose-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
+							<span className="px-3 py-1 bg-rose-600 text-snow text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
 								Sold
 							</span>
 						) : (
 							isNewListing(property._creationTime) && (
-								<span className="px-3 py-1 bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
+								<span className="px-3 py-1 bg-emerald-400 text-slate-900 text-xs font-bold uppercase tracking-wider rounded-full shadow-lg">
 									New
 								</span>
 							)
@@ -130,7 +130,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
 								</div>
 								<span className="text-sm font-semibold">
 									{value}{" "}
-									<span className="text-slate-400 font-normal text-xs">
+									<span className="text-slate-500 font-normal text-xs">
 										{label}
 									</span>
 								</span>

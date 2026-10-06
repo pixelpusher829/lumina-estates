@@ -18,6 +18,16 @@ export function formatNumber(value: number) {
 	return number.format(value);
 }
 
+const compact = new Intl.NumberFormat("en-US", {
+	notation: "compact",
+	maximumFractionDigits: 1,
+});
+
+/** 1250000 -> "1.3M", 24300 -> "24.3K". */
+export function formatCompact(value: number) {
+	return compact.format(value);
+}
+
 export function formatDate(timestamp: number) {
 	return new Date(timestamp).toLocaleDateString("en-US", {
 		day: "numeric",

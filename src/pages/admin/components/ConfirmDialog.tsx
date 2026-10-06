@@ -51,7 +51,7 @@ const ConfirmDialog = ({
 				<button
 					type="button"
 					data-autofocus
-					className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-rose-600 text-white font-semibold rounded-xl hover:bg-rose-700 transition-colors disabled:opacity-60"
+					className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-rose-600 text-snow font-semibold rounded-xl hover:bg-rose-500 transition-colors disabled:opacity-60"
 					onClick={handleConfirm}
 					disabled={busy}
 				>

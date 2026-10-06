@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode is class-based: the theme provider toggles .dark on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
 	--source-primary-50: #eef2ff;
 	--source-primary-100: #e0e7ff;
@@ -30,6 +33,10 @@
 	/* Logo */
 	--color-logo: var(--source-logo);
 
+	/* Fixed white that never flips in dark mode. Use for text on photos and
+	   on coloured fills (indigo/rose/emerald buttons and badges). */
+	--color-snow: #ffffff;
+
 	--animate-fade-in: fade-in 0.2s ease-out;
 	--animate-scale-in: scale-in 0.2s ease-out;
 
@@ -54,13 +61,104 @@
 	}
 }
 
+/*
+ * Dark theme
+ * ----------
+ * Instead of adding dark: variants to every component, the neutral palette
+ * (white + slate) is remapped to a near-black scale so surfaces, borders and
+ * text flip together. Light tints used for chips/badges become deep tints.
+ */
+.dark {
+	color-scheme: dark;
+
+	--color-white: #12161d;
+	--color-slate-50: #0b0e13;
+	--color-slate-100: #181d26;
+	--color-slate-200: #252c37;
+	--color-slate-300: #343d4b;
+	--color-slate-400: #5d6979;
+	--color-slate-500: #8c97a7;
+	--color-slate-600: #aab3c0;
+	--color-slate-700: #c6cdd7;
+	--color-slate-800: #dde2e9;
+	--color-slate-900: #edf0f4;
+	--color-slate-950: #f8fafc;
+
+	--color-primary-50: #1b1e40;
+	--color-primary-100: #232763;
+	--color-primary-200: #2f3584;
+
+	--color-rose-50: #2b1219;
+	--color-rose-100: #3c1721;
+	--color-rose-700: #fda4af;
+	--color-amber-50: #2b2111;
+	--color-amber-700: #fcd34d;
+	--color-emerald-50: #0b2a21;
+	--color-emerald-100: #0e3529;
+	--color-emerald-700: #6ee7b7;
+}
+
+/* Indigo text needs to be lighter to stay readable on dark surfaces. */
+.dark
+:is(.text-primary-500, .text-primary-600, .text-primary-700):not(
+	.palette-light *
+) {
+	color: #a5b4fc;
+}
+.dark
+	:is(.hover\:text-primary-600, .hover\:text-primary-700):hover:not(
+		.palette-light *
+	) {
+	color: #c7d2fe;
+}
+
+/* Dark indigo text (e.g. the admin demo banner) flips to a light indigo. */
+.dark .text-primary-900:not(.palette-light *) {
+	color: #e0e7ff;
+}
+
+/*
+ * Regions that look the same in both themes (hero, footer, CTA panels,
+ * photo overlays, lightbox). Re-declares the original light palette so the
+ * components inside keep their designed colours.
+ */
+.palette-light {
+	color-scheme: light;
+
+	--color-white: #fff;
+	--color-slate-50: oklch(98.4% 0.003 247.858);
+	--color-slate-100: oklch(96.8% 0.007 247.896);
+	--color-slate-200: oklch(92.9% 0.013 255.508);
+	--color-slate-300: oklch(86.9% 0.022 252.894);
+	--color-slate-400: oklch(70.4% 0.04 256.788);
+	--color-slate-500: oklch(55.4% 0.046 257.417);
+	--color-slate-600: oklch(44.6% 0.043 257.281);
+	--color-slate-700: oklch(37.2% 0.044 257.287);
+	--color-slate-800: oklch(27.9% 0.041 260.031);
+	--color-slate-900: oklch(20.8% 0.042 265.755);
+	--color-slate-950: oklch(12.9% 0.042 264.695);
+
+	--color-primary-50: var(--source-primary-50);
+	--color-primary-100: var(--source-primary-100);
+	--color-primary-200: var(--source-primary-200);
+
+	--color-rose-50: oklch(96.9% 0.015 12.422);
+	--color-rose-100: oklch(94.1% 0.03 12.58);
+	--color-rose-700: oklch(51.4% 0.222 16.935);
+	--color-amber-50: oklch(98.7% 0.022 95.277);
+	--color-amber-700: oklch(55.5% 0.163 48.998);
+	--color-emerald-50: oklch(97.9% 0.021 166.113);
+	--color-emerald-100: oklch(95% 0.052 163.051);
+	--color-emerald-700: oklch(50.8% 0.118 165.612);
+}
+
 @layer base {
 	html {
 		scroll-behavior: smooth;
 	}
 
 	body {
-		@apply bg-slate-50 text-slate-900 antialiased;
+		@apply bg-slate-50 text-slate-900 antialiased transition-colors duration-300;
 	}
 
 	button:not(:disabled),
@@ -82,7 +180,7 @@
 }
 
 @utility btn-primary {
-	@apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-60 disabled:cursor-not-allowed;
+	@apply inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-600 text-snow font-semibold rounded-xl hover:bg-primary-700 transition-colors shadow-lg shadow-primary-600/20 disabled:opacity-60 disabled:cursor-not-allowed;
 }
 
 @utility btn-secondary {

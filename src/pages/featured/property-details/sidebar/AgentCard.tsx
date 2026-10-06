@@ -16,7 +16,7 @@ const AgentCard = ({ agent }: AgentCardProps) => {
 				/>
 				<div className="min-w-0">
 					<p className="text-xs text-slate-500 font-medium">Listed by</p>
-					<h4 className="font-bold text-slate-900">{agent.name}</h4>
+					<h3 className="font-bold text-slate-900">{agent.name}</h3>
 					<p className="text-xs text-slate-500">{agent.title}</p>
 				</div>
 			</div>

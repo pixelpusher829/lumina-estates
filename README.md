@@ -91,17 +91,23 @@ Open http://localhost:3000. To use the owner account, go to `/admin/login`, choo
 
 ## Deployment
 
-1. Create the production deployment and set its environment:
+1. **Link a Convex project.** Run `bunx convex login`, then `bunx convex dev` and choose "create a new project". This replaces the local deployment in `.env.local`, so re-run the auth setup (`bunx @convex-dev/auth`), `bunx convex env set ADMIN_EMAILS you@example.com` and `bun run seed` for your dev deployment.
+2. **Get a production deploy key.** In the [Convex dashboard](https://dashboard.convex.dev), open the project, switch to **Production**, go to **Settings → URL & Deploy Key**, and generate a deploy key.
+3. **Deploy to Vercel.** Import the GitHub repo, then set:
+   - **Build command:** `bunx convex deploy --cmd 'bun run build'`
+   - **Output directory:** `dist`
+   - **Environment variable:** `CONVEX_DEPLOY_KEY` = the key from step 2
+
+   The build pushes the Convex functions and schema to production and injects `VITE_CONVEX_URL` automatically.
+4. **Configure production auth** (use your real site URL, with no trailing slash):
    ```bash
-   bunx @convex-dev/auth --prod --web-server-url https://your-site.com
+   bunx @convex-dev/auth --prod --web-server-url https://your-site.vercel.app
    bunx convex env set --prod ADMIN_EMAILS you@example.com
    ```
-2. Deploy the site to Vercel or Netlify, and set the build command to:
-   ```bash
-   bunx convex deploy --cmd 'bun run build'
-   ```
-   Add `CONVEX_DEPLOY_KEY` (from the Convex dashboard) as a build environment variable.
-3. Seed production once: `bunx convex run --prod seed:run`.
+5. **Seed production once:** `bunx convex run --prod seed:run`
+6. **Create your owner account:** go to `/admin/login` on the live site, choose **Create an account**, and use the email from `ADMIN_EMAILS`.
+
+The cleanup cron jobs start automatically on production. If you later add a custom domain, re-run step 4 with the new URL.
 
 SPA deep links work on both hosts: Vercel uses [vercel.json](vercel.json), and Netlify uses [public/_redirects](public/_redirects).
 

@@ -246,7 +246,7 @@ const ListingForm = ({ listing }: { listing: EditableListing | null }) => {
 				<div className="min-w-0">
 					<Link
 						to="/admin"
-						className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 mb-2"
+						className="inline-flex items-center gap-1.5 py-1 text-sm text-slate-500 hover:text-slate-900 mb-1"
 					>
 						<ArrowLeft size={16} /> All listings
 					</Link>
@@ -315,7 +315,7 @@ const ListingForm = ({ listing }: { listing: EditableListing | null }) => {
 							/>
 							<div className="flex justify-between">
 								<FieldError message={errors.description} />
-								<span className="text-xs text-slate-400 mt-1.5 ml-auto">
+								<span className="text-xs text-slate-500 mt-1.5 ml-auto">
 									{form.description.length}/{LIMITS.description}
 								</span>
 							</div>
@@ -468,7 +468,7 @@ const ListingForm = ({ listing }: { listing: EditableListing | null }) => {
 						<div>
 							<label className="label" htmlFor="highlights">
 								Highlights{" "}
-								<span className="font-normal text-slate-400">
+								<span className="font-normal text-slate-500">
 									(one per line, optional)
 								</span>
 							</label>
@@ -488,7 +488,10 @@ const ListingForm = ({ listing }: { listing: EditableListing | null }) => {
 				</div>
 
 				{/* Publish panel */}
-				<aside className="space-y-6 xl:sticky xl:top-10">
+				<aside
+					aria-label="Publishing options"
+					className="space-y-6 xl:sticky xl:top-10"
+				>
 					<Section title="Publishing">
 						<div>
 							<label className="label" htmlFor="status">

@@ -43,7 +43,7 @@ const Gallery = ({ title, images }: GalleryProps) => {
 				className={`grid gap-4 mb-8 lg:h-140 lg:grid-rows-[minmax(0,1fr)] ${sideImages.length > 0 ? "lg:grid-cols-3" : ""}`}
 			>
 				{/* Main image */}
-				<div className="lg:col-span-2 relative h-72 sm:h-96 lg:h-full rounded-2xl overflow-hidden group bg-slate-100">
+				<div className="palette-light lg:col-span-2 relative h-72 sm:h-96 lg:h-full rounded-2xl overflow-hidden group bg-slate-100">
 					<button
 						type="button"
 						onClick={() => setLightboxOpen(true)}

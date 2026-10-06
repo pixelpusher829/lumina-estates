@@ -1,6 +1,7 @@
 import { Heart, LayoutDashboard, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
+import ThemeToggle from "@/shared/components/ThemeToggle";
 import { APP_NAME, CONTACT } from "@/shared/data/constants";
 import { useFavorites } from "@/shared/hooks/useFavorites";
 import Logo from "./Logo";
@@ -9,7 +10,6 @@ const NAV_LINKS = [
 	{ name: "Home", path: "/" },
 	{ name: "Properties", path: "/featured" },
 	{ name: "Services", path: "/services" },
-	{ name: "Agents", path: "/agents" },
 	{ name: "About", path: "/about" },
 	{ name: "Contact", path: "/contact" },
 ];
@@ -36,8 +36,15 @@ const Navbar = () => {
 	// Only the home page has a hero image behind the navbar.
 	const transparent = pathname === "/" && !isScrolled && !mobileMenuOpen;
 
+	// Shared style for the round icon buttons on the right (matches ThemeToggle).
+	const iconButton = `w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
+		transparent
+			? "text-white/80 hover:text-white hover:bg-white/10"
+			: "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+	}`;
+
 	const linkClass = ({ isActive }: { isActive: boolean }) =>
-		`text-sm font-medium transition-colors ${
+		`inline-block py-1 text-sm font-medium transition-colors ${
 			transparent
 				? isActive
 					? "text-white"
@@ -51,7 +58,7 @@ const Navbar = () => {
 		<nav
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
 				transparent
-					? "bg-transparent py-6"
+					? "palette-light bg-transparent py-6"
 					: "bg-white/90 backdrop-blur-md shadow-sm py-4"
 			}`}
 		>
@@ -80,52 +87,45 @@ const Navbar = () => {
 				</div>
 
 				{/* Actions */}
-				<div className="flex items-center gap-1 sm:gap-3">
+				<div className="flex items-center gap-1">
 					<a
 						href={CONTACT.phoneHref}
-						className="hidden xl:flex items-center gap-2 text-primary-700 font-semibold px-4 py-2 bg-primary-50 rounded-full text-sm hover:bg-primary-100 transition-colors"
+						className="hidden xl:flex items-center gap-2 mr-2 text-primary-700 font-semibold px-4 py-2 bg-primary-50 rounded-full text-sm hover:bg-primary-100 transition-colors"
 					>
 						<Phone size={16} />
 						<span>{CONTACT.phone}</span>
 					</a>
+					<ThemeToggle onImage={transparent} />
 					<Link
 						to="/admin"
 						title="Admin dashboard"
-						className={`hidden sm:flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
-							transparent
-								? "bg-white/15 text-white hover:bg-white/25 backdrop-blur"
-								: "bg-slate-900 text-white hover:bg-slate-700"
-						}`}
+						aria-label="Admin dashboard"
+						className={`${iconButton} hidden sm:flex`}
 					>
-						<LayoutDashboard size={16} />
-						Admin
+						<LayoutDashboard size={20} />
 					</Link>
 					<Link
 						to="/favorites"
 						title="Saved properties"
 						aria-label={`Saved properties (${favorites.length})`}
-						className={`relative p-2 transition-colors ${
-							transparent
-								? "text-white/80 hover:text-rose-400"
-								: "text-slate-600 hover:text-rose-500"
-						}`}
+						className={`${iconButton} relative`}
 					>
-						<Heart size={22} />
+						<Heart size={20} />
 						{favorites.length > 0 && (
-							<span className="absolute top-0 right-0 min-w-4 h-4 px-1 bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full">
+							<span className="absolute top-0.5 right-0.5 min-w-4 h-4 px-1 bg-rose-500 text-snow text-[10px] font-bold flex items-center justify-center rounded-full">
 								{favorites.length}
 							</span>
 						)}
 					</Link>
 
 					<button
-						className={`lg:hidden p-2 ${transparent ? "text-white" : "text-slate-800"}`}
+						className={`${iconButton} lg:hidden`}
 						onClick={() => setMobileMenuOpen((open) => !open)}
 						type="button"
 						aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
 						aria-expanded={mobileMenuOpen}
 					>
-						{mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+						{mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
 					</button>
 				</div>
 			</div>

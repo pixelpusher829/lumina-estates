@@ -13,7 +13,7 @@ const SearchHeader = () => {
 	};
 
 	return (
-		<div className="bg-slate-900 text-white py-16 md:py-24 mb-12">
+		<div className="palette-light bg-slate-900 text-white py-16 md:py-24 mb-12">
 			<div className="container mx-auto px-6 text-center max-w-3xl">
 				<h1 className="text-3xl md:text-5xl font-bold mb-6">
 					How can we help you?

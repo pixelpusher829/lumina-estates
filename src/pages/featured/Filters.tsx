@@ -99,7 +99,7 @@ const Filters = ({
 						<SlidersHorizontal size={18} />
 						<span className="hidden sm:inline">Filters</span>
 						{activeCount > 0 && (
-							<span className="min-w-5 h-5 px-1 rounded-full bg-primary-600 text-white text-xs flex items-center justify-center">
+							<span className="min-w-5 h-5 px-1 rounded-full bg-primary-600 text-snow text-xs flex items-center justify-center">
 								{activeCount}
 							</span>
 						)}
@@ -116,7 +116,7 @@ const Filters = ({
 						aria-pressed={filters.type === type}
 						className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors whitespace-nowrap ${
 							filters.type === type
-								? "bg-primary-600 text-white"
+								? "bg-primary-600 text-snow"
 								: "bg-slate-50 text-slate-600 hover:bg-slate-100"
 						}`}
 						type="button"

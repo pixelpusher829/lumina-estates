@@ -89,7 +89,7 @@ const AdminSubscribers = () => {
 							>
 								{subscriber.email}
 							</a>
-							<span className="text-sm text-slate-400 whitespace-nowrap hidden sm:inline">
+							<span className="text-sm text-slate-500 whitespace-nowrap hidden sm:inline">
 								{formatDate(subscriber._creationTime)}
 							</span>
 							<button

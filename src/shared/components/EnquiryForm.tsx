@@ -147,7 +147,7 @@ const EnquiryForm = ({
 				</div>
 				<div>
 					<label className="label" htmlFor={id("phone")}>
-						Phone <span className="font-normal text-slate-400">(optional)</span>
+						Phone <span className="font-normal text-slate-500">(optional)</span>
 					</label>
 					<input
 						id={id("phone")}

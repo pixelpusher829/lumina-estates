@@ -1,21 +1,26 @@
-import type React from "react";
-import Agents from "@/features/agents-section";
 import Seo from "@/shared/components/Seo";
+import ByTheNumbers from "./ByTheNumbers";
+import Careers from "./Careers";
+import FounderNote from "./FounderNote";
 import Hero from "./Hero";
-import ImageGrid from "./ImageGrid";
 import Mission from "./Mission";
+import Story from "./Story";
+import Team from "./Team";
 
-const About: React.FC = () => {
+const About = () => {
 	return (
-		<div className="min-h-screen pt-28 pb-20 bg-white">
+		<div className="min-h-screen pt-20 pb-24 bg-white overflow-hidden">
 			<Seo
 				title="About Us"
 				description="Meet the team behind Lumina Estates and learn about our mission."
 			/>
 			<Hero />
-			<ImageGrid />
 			<Mission />
-			<Agents />
+			<ByTheNumbers />
+			<Story />
+			<Team />
+			<FounderNote />
+			<Careers />
 		</div>
 	);
 };

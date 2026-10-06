@@ -14,7 +14,7 @@ const LINK_GROUPS = [
 		links: [
 			{ name: "Properties", to: "/featured" },
 			{ name: "About Us", to: "/about" },
-			{ name: "Our Agents", to: "/agents" },
+			{ name: "Our Agents", to: "/about#team" },
 			{ name: "Services", to: "/services" },
 		],
 	},
@@ -81,11 +81,11 @@ const NewsletterForm = () => {
 
 const Footer = () => {
 	return (
-		<footer className="bg-slate-900 text-slate-300 pt-16 pb-10">
+		<footer className="palette-light bg-slate-900 text-slate-300 pt-16 pb-10">
 			<div className="container mx-auto px-6">
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-14">
+				<div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-8 mb-14">
 					{/* Brand Column */}
-					<div className="space-y-6">
+					<div className="col-span-2 lg:col-span-1 space-y-6">
 						<Link to="/" className="flex items-center gap-3 text-white">
 							<Logo />
 							<span className="text-2xl font-bold tracking-tight">
@@ -101,7 +101,7 @@ const Footer = () => {
 							<li>
 								<a
 									href={CONTACT.phoneHref}
-									className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+									className="flex items-center gap-2 py-0.5 text-slate-400 hover:text-white transition-colors"
 								>
 									<Phone size={14} /> {CONTACT.phone}
 								</a>
@@ -109,7 +109,7 @@ const Footer = () => {
 							<li>
 								<a
 									href={`mailto:${CONTACT.email}`}
-									className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+									className="flex items-center gap-2 py-0.5 text-slate-400 hover:text-white transition-colors"
 								>
 									<Mail size={14} /> {CONTACT.email}
 								</a>
@@ -123,9 +123,9 @@ const Footer = () => {
 
 					{LINK_GROUPS.map((group) => (
 						<div key={group.title}>
-							<h4 className="text-white font-bold text-lg mb-6">
+							<h2 className="text-white font-bold text-lg mb-6">
 								{group.title}
-							</h4>
+							</h2>
 							<ul className="space-y-4">
 								{group.links.map((link) => (
 									<li key={link.to}>
@@ -142,8 +142,8 @@ const Footer = () => {
 					))}
 
 					{/* Newsletter */}
-					<div>
-						<h4 className="text-white font-bold text-lg mb-6">Newsletter</h4>
+					<div className="col-span-2 lg:col-span-1">
+						<h2 className="text-white font-bold text-lg mb-6">Newsletter</h2>
 						<p className="text-slate-400 text-sm mb-4">
 							Get new listings and market updates in your inbox.
 						</p>
@@ -152,18 +152,27 @@ const Footer = () => {
 				</div>
 
 				{/* Bottom Bar */}
-				<div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+				<div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
 					<p>
 						&copy; {new Date().getFullYear()} {APP_NAME}. All rights reserved.
 					</p>
 					<div className="flex gap-6">
-						<Link to="/legal" className="hover:text-white transition-colors">
+						<Link
+							to="/legal"
+							className="py-0.5 hover:text-white transition-colors"
+						>
 							Privacy
 						</Link>
-						<Link to="/legal" className="hover:text-white transition-colors">
+						<Link
+							to="/legal"
+							className="py-0.5 hover:text-white transition-colors"
+						>
 							Terms
 						</Link>
-						<Link to="/admin" className="hover:text-white transition-colors">
+						<Link
+							to="/admin"
+							className="py-0.5 hover:text-white transition-colors"
+						>
 							Admin
 						</Link>
 					</div>

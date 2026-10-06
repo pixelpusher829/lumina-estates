@@ -1,60 +1,52 @@
-import { Award, Target, TrendingUp, Users } from "lucide-react";
-import type React from "react";
+import officeImg from "@/shared/images/about/office.webp";
+import teamImg from "@/shared/images/about/team.webp";
 
-const Mission: React.FC = () => {
+const Mission = () => {
 	return (
-		<div className="bg-slate-50 py-24 mb-24">
+		<section className="py-16 md:py-24 relative">
 			<div className="container mx-auto px-6">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-					<div>
-						<h2 className="text-3xl font-bold text-slate-900 mb-6">
-							Our Mission
+				<div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+					{/* Text */}
+					<div className="lg:w-1/2 relative z-10">
+						<h2 className="text-4xl font-bold text-slate-900 tracking-tight mb-6">
+							Our mission
 						</h2>
-						<p className="text-slate-600 leading-relaxed mb-6">
-							We strive to empower our clients with data-driven insights and
-							curated opportunities. Whether you are buying your first apartment
-							or investing in a commercial portfolio, our goal is to maximize
-							your value and peace of mind.
+						<p className="text-lg text-slate-600 leading-relaxed mb-6">
+							We empower our clients with data-driven insights and curated
+							opportunities. Whether you're buying your first apartment or
+							investing in a portfolio, our goal is to maximise your value and
+							your peace of mind.
 						</p>
-						<p className="text-slate-600 leading-relaxed">
-							Integrity, transparency, and innovation are at the core of
-							everything we do. We believe in building long-term relationships
-							that extend far beyond the closing table.
+						<p className="text-lg text-slate-600 leading-relaxed">
+							Integrity, transparency and innovation are at the core of
+							everything we do. We build long-term relationships that extend far
+							beyond the closing table.
 						</p>
 					</div>
-					<div className="grid grid-cols-2 gap-6">
-						<div className="bg-white p-6 rounded-2xl shadow-sm">
-							<Target className="text-emerald-400 mb-4" size={32} />
-							<h3 className="font-bold text-slate-900 mb-2">Precision</h3>
-							<p className="text-sm text-slate-500">
-								Targeted search and marketing strategies.
-							</p>
+
+					{/* Asymmetrical image cluster */}
+					<div className="lg:w-1/2 w-full relative">
+						<div className="relative z-10 w-5/6 ml-auto">
+							<img
+								src={teamImg}
+								alt="The Lumina Estates team in a meeting"
+								className="rounded-[2.5rem] shadow-2xl w-full object-cover aspect-4/5"
+							/>
 						</div>
-						<div className="bg-white p-6 rounded-2xl shadow-sm">
-							<Users className="text-emerald-400 mb-4" size={32} />
-							<h3 className="font-bold text-slate-900 mb-2">Community</h3>
-							<p className="text-sm text-slate-500">
-								Building strong local networks.
-							</p>
+						<div className="absolute -bottom-8 -left-2 sm:-left-4 w-1/2 z-20">
+							<img
+								src={officeImg}
+								alt="Inside the Lumina Estates office"
+								loading="lazy"
+								className="rounded-3xl shadow-xl border-8 border-white w-full object-cover aspect-square"
+							/>
 						</div>
-						<div className="bg-white p-6 rounded-2xl shadow-sm">
-							<Award className="text-emerald-400 mb-4" size={32} />
-							<h3 className="font-bold text-slate-900 mb-2">Excellence</h3>
-							<p className="text-sm text-slate-500">
-								Award-winning service standards.
-							</p>
-						</div>
-						<div className="bg-white p-6 rounded-2xl shadow-sm">
-							<TrendingUp className="text-emerald-400 mb-4" size={32} />
-							<h3 className="font-bold text-slate-900 mb-2">Growth</h3>
-							<p className="text-sm text-slate-500">
-								Focus on long-term asset value.
-							</p>
-						</div>
+						{/* Decorative blob */}
+						<div className="absolute -top-12 -right-12 w-64 h-64 bg-emerald-100 rounded-full mix-blend-multiply blur-3xl opacity-50 dark:opacity-10 -z-10" />
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

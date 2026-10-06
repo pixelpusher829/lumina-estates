@@ -55,20 +55,20 @@ const ContactInfo = () => {
 				</ul>
 			</div>
 
-			<div className="bg-emerald-500 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden">
-				<div className="absolute top-0 right-0 w-32 h-32 bg-emerald-400 rounded-full blur-2xl -mr-10 -mt-10" />
+			<div className="palette-light bg-emerald-400 dark:bg-emerald-950 dark:border dark:border-emerald-900 p-8 rounded-3xl shadow-lg dark:shadow-none text-slate-900 dark:text-snow relative overflow-hidden">
+				<div className="absolute top-0 right-0 w-32 h-32 bg-emerald-300 dark:bg-emerald-700 dark:opacity-30 rounded-full blur-2xl -mr-10 -mt-10" />
 				<div className="relative z-10">
 					<h2 className="text-xl font-bold mb-3 flex items-center gap-2">
 						<MessageSquare size={20} />
 						Have a quick question?
 					</h2>
-					<p className="text-emerald-50 mb-6 text-sm">
+					<p className="text-emerald-950 dark:text-emerald-200 mb-6 text-sm">
 						Many common questions about buying, renting and selling are answered
 						in our FAQ.
 					</p>
 					<Link
 						to="/faq"
-						className="block text-center w-full py-3 bg-white text-emerald-900 font-bold rounded-xl hover:bg-emerald-50 transition-colors"
+						className="block text-center w-full py-3 bg-white text-emerald-900 dark:bg-emerald-500 dark:text-emerald-950 font-bold rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-400 transition-colors"
 					>
 						Read the FAQ
 					</Link>

@@ -64,7 +64,7 @@ const PrivacyPolicy: React.FC = () => {
 					at:{" "}
 					<a
 						href="mailto:privacy@luminaestates.com"
-						className="text-primary-600 hover:underline"
+						className="text-primary-600 underline underline-offset-2"
 					>
 						privacy@luminaestates.com
 					</a>

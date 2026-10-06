@@ -16,6 +16,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { toast } from "sonner";
 import PageLoader from "@/shared/components/PageLoader";
+import ThemeToggle from "@/shared/components/ThemeToggle";
 import { APP_NAME } from "@/shared/data/constants";
 import Logo from "@/shared/layout/Logo";
 
@@ -25,7 +26,7 @@ const NavBadge = () => {
 	const unread = useQuery(api.enquiries.unreadCount);
 	if (!unread) return null;
 	return (
-		<span className="ml-auto min-w-5 h-5 px-1.5 rounded-full bg-rose-500 text-white text-xs font-bold flex items-center justify-center">
+		<span className="ml-auto min-w-5 h-5 px-1.5 rounded-full bg-rose-500 text-snow text-xs font-bold flex items-center justify-center">
 			{unread >= 100 ? "99+" : unread}
 		</span>
 	);
@@ -164,7 +165,10 @@ const AdminLayout = () => {
 	return (
 		<div className="min-h-screen bg-slate-50 lg:flex">
 			{/* Sidebar (desktop) / top bar (mobile) */}
-			<aside className="lg:w-64 lg:shrink-0 lg:h-screen lg:sticky lg:top-0 bg-white border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col">
+			<aside
+				aria-label="Admin navigation"
+				className="lg:w-64 lg:shrink-0 lg:h-screen lg:sticky lg:top-0 bg-white border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col"
+			>
 				<div className="flex items-center justify-between gap-3 px-4 lg:px-6 py-4 lg:py-6">
 					<Link to="/admin" className="flex items-center gap-2">
 						<Logo />
@@ -174,6 +178,7 @@ const AdminLayout = () => {
 						</span>
 					</Link>
 					<div className="flex items-center lg:hidden">
+						<ThemeToggle />
 						<Link
 							to="/"
 							className="p-2 text-slate-500 hover:text-slate-900"
@@ -202,13 +207,17 @@ const AdminLayout = () => {
 					))}
 					<Link
 						to="/admin/listings/new"
-						className="lg:mt-4 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold bg-primary-600 text-white hover:bg-primary-700 transition-colors whitespace-nowrap"
+						className="lg:mt-4 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold bg-primary-600 text-snow hover:bg-primary-700 transition-colors whitespace-nowrap"
 					>
 						<Plus size={18} /> New listing
 					</Link>
 				</nav>
 
 				<div className="hidden lg:block mt-auto p-3 border-t border-slate-100 space-y-1">
+					<div className="flex items-center justify-between px-3 text-sm font-semibold text-slate-600">
+						Appearance
+						<ThemeToggle />
+					</div>
 					<Link to="/" className={navLinkClass({ isActive: false })}>
 						<ExternalLink size={18} /> View site
 					</Link>
@@ -219,13 +228,13 @@ const AdminLayout = () => {
 					>
 						<LogOut size={18} /> {isDemo ? "End demo session" : "Sign out"}
 					</button>
-					<p className="px-3 pt-2 text-xs text-slate-400 truncate">
+					<p className="px-3 pt-2 text-xs text-slate-500 truncate">
 						{isDemo ? (
 							<>
 								Demo account ·{" "}
 								<Link
 									to="/admin/login"
-									className="underline hover:text-slate-600"
+									className="underline hover:text-slate-700"
 								>
 									Owner sign in
 								</Link>

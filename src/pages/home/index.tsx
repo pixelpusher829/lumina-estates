@@ -2,6 +2,7 @@ import Seo from "@/shared/components/Seo";
 import Cta from "./Cta";
 import FeaturedProperties from "./FeaturedProperties";
 import Hero from "./Hero";
+import HowItWorks from "./HowItWorks";
 import Neighbourhoods from "./Neighbourhoods";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
@@ -13,6 +14,7 @@ const Home = () => {
 			<Hero />
 			<Services />
 			<FeaturedProperties />
+			<HowItWorks />
 			<Neighbourhoods />
 			<Testimonials />
 			<Cta />
