@@ -3,7 +3,7 @@ import teamImg from "@/shared/images/about/team.webp";
 
 const Mission = () => {
 	return (
-		<section className="py-16 md:py-24 relative">
+		<section className="pt-16 pb-24 md:pt-24 md:pb-32 relative">
 			<div className="container mx-auto px-6">
 				<div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 					{/* Text */}
@@ -30,10 +30,10 @@ const Mission = () => {
 							<img
 								src={teamImg}
 								alt="The Lumina Estates team in a meeting"
-								className="rounded-[2.5rem] shadow-2xl w-full object-cover aspect-4/5"
+								className="rounded-3xl shadow-2xl w-full object-cover aspect-square"
 							/>
 						</div>
-						<div className="absolute -bottom-8 -left-2 sm:-left-4 w-1/2 z-20">
+						<div className="absolute -bottom-16 -left-2 sm:-left-4 w-2/5 z-20">
 							<img
 								src={officeImg}
 								alt="Inside the Lumina Estates office"

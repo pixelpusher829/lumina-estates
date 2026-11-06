@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { Link } from "react-router";
 import { CONTACT } from "@/shared/data/constants";
 
@@ -55,22 +55,25 @@ const ContactInfo = () => {
 				</ul>
 			</div>
 
-			<div className="palette-light bg-emerald-400 dark:bg-emerald-950 dark:border dark:border-emerald-900 p-8 rounded-3xl shadow-lg dark:shadow-none text-slate-900 dark:text-snow relative overflow-hidden">
-				<div className="absolute top-0 right-0 w-32 h-32 bg-emerald-300 dark:bg-emerald-700 dark:opacity-30 rounded-full blur-2xl -mr-10 -mt-10" />
+			<div className="palette-light bg-white border border-slate-100 p-8 rounded-3xl shadow-sm text-slate-900 dark:text-snow relative overflow-hidden">
 				<div className="relative z-10">
 					<h2 className="text-xl font-bold mb-3 flex items-center gap-2">
 						<MessageSquare size={20} />
 						Have a quick question?
 					</h2>
-					<p className="text-emerald-950 dark:text-emerald-200 mb-6 text-sm">
+					<p className="text-emerald-900 dark:text-emerald-200 mb-6 text-sm">
 						Many common questions about buying, renting and selling are answered
 						in our FAQ.
 					</p>
 					<Link
 						to="/faq"
-						className="block text-center w-full py-3 bg-white text-emerald-900 dark:bg-emerald-500 dark:text-emerald-950 font-bold rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-400 transition-colors"
+						className="inline-flex items-center gap-2 font-semibold text-primary-600 hover:text-primary-700 group"
 					>
 						Read the FAQ
+						<ArrowRight
+							size={18}
+							className="transition-transform group-hover:translate-x-1"
+						/>
 					</Link>
 				</div>
 			</div>

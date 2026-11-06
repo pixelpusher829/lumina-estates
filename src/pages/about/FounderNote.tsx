@@ -12,8 +12,8 @@ const FounderNote = () => {
 			<div className="container mx-auto px-6">
 				{/* Stays dark in both themes. */}
 				<div className="palette-light relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 sm:p-12 lg:p-16">
-					<div className="absolute -top-24 -right-24 w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-20" />
-					<div className="absolute -bottom-32 -left-16 w-80 h-80 bg-emerald-400 rounded-full blur-3xl opacity-10" />
+					<div className="absolute -top-64 -right-56 w-[48rem] h-[48rem] bg-indigo-500 rounded-full blur-[140px] opacity-10" />
+					<div className="absolute -bottom-64 -left-48 w-[40rem] h-[40rem] bg-emerald-400 rounded-full blur-[140px] opacity-5" />
 
 					<div className="relative grid gap-10 lg:grid-cols-12 lg:gap-16 items-center">
 						<div className="lg:col-span-4">

@@ -1,11 +1,11 @@
 const Hero = () => {
 	return (
-		<div className="relative pt-16 pb-24 lg:pt-24 lg:pb-32 container mx-auto px-6">
-			<div className="relative z-10 grid gap-10 lg:grid-cols-12 lg:gap-16 lg:items-end">
-				<h1 className="lg:col-span-7 text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.05] tracking-tight text-balance">
+		<div className="relative pt-16 pb-12 lg:pt-24 lg:pb-16 container mx-auto px-6">
+			<div className="relative z-10 flex max-w-5xl flex-col items-start gap-6">
+				<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.05] tracking-tight text-balance">
 					Redefining luxury real estate for the modern era
 				</h1>
-				<p className="lg:col-span-5 text-lg md:text-xl text-slate-500 leading-relaxed">
+				<p className="max-w-2xl text-lg md:text-xl text-slate-500 leading-relaxed">
 					Lumina Estates was founded on a simple belief: finding a home should
 					be an inspiring journey, not a stressful transaction. We combine
 					technology, design, and human connection to create a seamless
